@@ -1,0 +1,168 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #007bff;
+    padding: 15px;
+    color: white;
+    border-radius: 5px 5px 0 0;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"], 
+.form-group input[type="number"], 
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+a.btn-edit, 
+a.btn-delete {
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+a.btn-edit {
+    background-color: #ffc107;
+    color: white;
+}
+
+a.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Navbar Styles */
+.navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Memberikan efek bayangan */
+    padding: 0.75rem 1rem; /* Memberikan jarak dalam navbar */
+    background-color: #343a40; /* Warna latar belakang navbar */
+}
+
+.navbar-brand {
+    font-size: 1.5rem; /* Ukuran font untuk brand */
+    font-weight: bold; /* Membuat teks tebal */
+    color: #ffffff; /* Warna teks */
+}
+
+.navbar-brand:hover {
+    color: #f8f9fa; /* Warna saat hover */
+    text-decoration: none; /* Menghilangkan garis bawah */
+}
+
+.nav-link {
+    font-size: 1rem; /* Ukuran font untuk link */
+    margin-right: 1rem; /* Memberikan jarak antar link */
+    color: #ffffff; /* Warna default teks */
+    transition: color 0.3s ease-in-out; /* Efek transisi */
+}
+
+.nav-link:hover {
+    color: #adb5bd; /* Warna teks saat hover */
+    text-decoration: none; /* Menghilangkan garis bawah */
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5); /* Warna border tombol toggle */
+}
+
+.navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"%3E%3Cpath stroke="rgba%2888, 88, 88, 1%29" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E');
+    border-radius: 2px; /* Membuat ujung ikon lebih halus */
+}
+
+.nav-item .dropdown-menu {
+    background-color: #343a40; /* Warna dropdown */
+    border: none; /* Menghapus border default */
+    border-radius: 4px; /* Membuat sudut dropdown membulat */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efek bayangan */
+}
+
+.dropdown-item {
+    color: #ffffff; /* Warna teks item dropdown */
+    padding: 10px 15px; /* Memberikan padding */
+}
+
+.dropdown-item:hover {
+    background-color: #495057; /* Warna latar belakang saat hover */
+    color: #f8f9fa; /* Warna teks saat hover */
+}
+
+/* Avatar Styles */
+.navbar .nav-item .nav-link img {
+    border: 2px solid #ffffff; /* Border putih pada avatar */
+    padding: 2px; /* Jarak antara border dan gambar */
+    border-radius: 50%; /* Membuat gambar berbentuk lingkaran */
+    width: 30px; /* Ukuran avatar */
+    height: 30px; /* Ukuran avatar */
+    transition: transform 0.3s ease-in-out; /* Efek zoom */
+}
+
+.navbar .nav-item .nav-link img:hover {
+    transform: scale(1.1); /* Memperbesar gambar saat hover */
+}
