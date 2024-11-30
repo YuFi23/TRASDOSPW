@@ -1,5 +1,5 @@
 # Tugas-Rancang-PW
-repository Tugas Rancang Pemograman Web
+repository Tugas Rancang ASDOS Pemograman Web
 
 # Link Figma
-https://www.figma.com/design/0esQPQLgJ4CcYRhjK8NEyK/tiket-konser?node-id=0-1&t=1zah8rW8LviHeeqR-1
+https://www.figma.com/design/IRs0MRNoOJ07xLJlSgYMWB/tr-ast-pw?node-id=0-1&t=YtYO481DirJ8oQI6-1
