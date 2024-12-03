@@ -103,82 +103,105 @@ $conn->close();
     <title>Login & Sign Up</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url("img/utama.jpg");
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url("img/utama.jpg");
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        .form-container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-        }
+    .form-container {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+    }
 
-        .form-container h2 {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
+    .form-container h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
 
-        .form-container input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
+    .form-container input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
 
-        .form-container button {
-            width: 100%;
-            background-color:#823b00;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            margin-top: 15px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+    .form-container button {
+        width: 100%;
+        background-color: #823b00;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        margin-top: 15px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
 
-        .form-container button:hover {
-            background-color: #db7304;
-        }
+    .form-container button:hover {
+        background-color: #db7304;
+    }
 
-        .form-container .error-message {
-            color: red;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
+    .form-container .error-message {
+        color: red;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
 
-        .form-container hr {
-            margin: 20px 0;
-            border: 0.5px solid #ddd;
-        }
+    .form-container hr {
+        margin: 20px 0;
+        border: 0.5px solid #ddd;
+    }
 
-        .toggle-link {
-            display: inline-block;
-            margin-top: 10px;
-            color:#aa4404;
-            text-decoration: none;
-            font-size: 14px;
-        }
+    .toggle-link {
+        display: inline-block;
+        margin-top: 10px;
+        color: #aa4404;
+        text-decoration: none;
+        font-size: 14px;
+    }
 
-        .toggle-link:hover {
-            text-decoration: underline;
-        }
-    </style>
+    .toggle-link:hover {
+        text-decoration: underline;
+    }
+
+    /* Kontainer utama */
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        max-width: 100%;
+    }
+
+    /* Tombol Logout */
+    .btn-danger {
+        margin-top: 20px;
+        width: auto;
+    }
+
+    /* Form login dan signup di tengah */
+    #login-form, #signup-form {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+</style>
 </head>
 <body>
 
@@ -187,7 +210,16 @@ $conn->close();
         <h2>Welcome, <?php echo $_SESSION['username']; ?>!</h2>
         <img src="<?php echo $_SESSION['avatar']; ?>" alt="Avatar" width="100" height="100">
         <p>You are logged in as <?php echo $_SESSION['role']; ?>.</p>
-        <a href="logout.php?logout=true" class="btn btn-danger">Logout</a>
+        
+        <?php if ($_SESSION['role'] == 'admin'): ?>
+            <a href="DataPelanggan.php" class="btn btn-primary">Admin Panel</a>
+        <?php elseif ($_SESSION['role'] == 'user'): ?>
+            <a href="home.php" class="btn btn-primary">User Dashboard</a>
+        <?php else: ?>
+            <a href="home3.php" class="btn btn-primary">Other Role Dashboard</a>
+        <?php endif; ?>
+
+        <a href="?logout=true" class="btn btn-danger">Logout</a>
     </div>
 <?php else: ?>
     <!-- Form Login -->
