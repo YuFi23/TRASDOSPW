@@ -1,30 +1,19 @@
-<?php 
-include('database.php'); 
+<?php
+include('database.php');
 include('functions.php');
 
 if (isset($_POST['add'])) {
-   
     $nama_menu = $_POST['nama_menu'];
     $deskripsi = $_POST['deskripsi'];
     $harga = $_POST['harga'];
-    $kategori = $_POST['kategori']; 
-    
-    
-  
-if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
-    $gambar = $_FILES['gambar'];
+    $kategori = $_POST['kategori'];
+    $gambar = $_FILES['gambar'] ?? null;
 
-   
-    $target_dir = "img/"; 
-    $target_file = $target_dir . basename($gambar["name"]);
-    move_uploaded_file($gambar["tmp_name"], $target_file);
-
-    
-    createMenu($conn, $nama_menu, $deskripsi, $harga, $kategori, $gambar["name"]);
-} else {
-    echo "Error: Tidak ada gambar yang di-upload.";
-}
-
+    if ($gambar && $gambar['error'] == 0) {
+        createMenu($conn, $nama_menu, $deskripsi, $harga, $kategori, $gambar);
+    } else {
+        echo "Error: No valid image uploaded.";
+    }
 }
 
 if (isset($_POST['update'])) {
@@ -33,20 +22,9 @@ if (isset($_POST['update'])) {
     $deskripsi = $_POST['deskripsi'];
     $harga = $_POST['harga'];
     $kategori = $_POST['kategori'];
-    $gambar = null;
+    $gambar = $_FILES['gambar'] ?? null;
 
-   
-    if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
-        $gambar = $_FILES['gambar'];
-
-        
-        $target_dir = "img/"; 
-        $target_file = $target_dir . basename($gambar["name"]);
-        move_uploaded_file($gambar["tmp_name"], $target_file);
-    }
-
-
-    updateMenu($conn, $id, $nama_menu, $deskripsi, $harga, $kategori, $gambar ? $gambar["name"] : null);
+    updateMenu($conn, $id, $nama_menu, $deskripsi, $harga, $kategori, $gambar);
 }
 
 if (isset($_GET['delete'])) {
