@@ -12,7 +12,7 @@ session_start();
 </head>
 <body>
     <nav class="navbar">
-        <div class="merk">EncS</div>
+        <div class="merk">YAHM</div>
         <input type="checkbox" id="menu-toggle" class="menu-toggle">
         <label for="menu-toggle" class="menu-icon">&#9776;</label> 
         <ul class="nav-links">

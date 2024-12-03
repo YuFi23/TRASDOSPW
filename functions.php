@@ -1,7 +1,50 @@
 <?php
 include 'database.php';
 
-// Fungsi untuk mendapatkan menu berdasarkan ID
+function createMenu($conn, $nama_menu, $deskripsi, $harga, $kategori, $gambar) {
+    // Pastikan gambar yang diterima adalah array dari $_FILES
+    if (isset($gambar) && is_array($gambar) && $gambar['error'] == 0) {
+        $target_dir = "img/";
+        $target_file = $target_dir . basename($gambar['name']);
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Cek ekstensi file gambar
+        $allowed_types = ["jpg", "jpeg", "png", "gif"];
+        if (!in_array($imageFileType, $allowed_types)) {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            return;
+        }
+
+        // Memastikan direktori tujuan dapat ditulis
+        if (!is_writable($target_dir)) {
+            echo "The target directory is not writable.";
+            return;
+        }
+
+        // Cek apakah file berhasil di-upload
+        if (move_uploaded_file($gambar['tmp_name'], $target_file)) {
+            // Query untuk menambah menu ke database
+            $sql = "INSERT INTO menu (nama_menu, deskripsi, harga, kategori, gambar) 
+                    VALUES (?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ssdss", $nama_menu, $deskripsi, $harga, $kategori, $gambar['name']);
+            
+            // Eksekusi query
+            if ($stmt->execute()) {
+                header("Location: daftarMenu.php?added=success");
+                exit();
+            } else {
+                echo "Database error: " . $conn->error;
+            }
+        } else {
+            echo "Sorry, there was an error uploading your file. Error code: " . $gambar['error'];
+        }
+    } else {
+        echo "Invalid image file or no image uploaded. Error code: " . $gambar['error'];
+    }
+}
+
+// Fungsi untuk mendapatkan data menu berdasarkan ID
 function getMenuById($conn, $id) {
     $query = "SELECT * FROM menu WHERE id = ?";
     $stmt = $conn->prepare($query);
@@ -15,38 +58,6 @@ function getMenuById($conn, $id) {
         return null;
     }
 }
-
-// Fungsi untuk menambah menu
-// Fungsi untuk menambah menu
-function createMenu($conn, $nama_menu, $deskripsi, $harga, $kategori, $gambar) {
-    $target_dir = "img/";
-    // Memastikan $gambar adalah array yang benar
-    $target_file = $target_dir . basename($gambar['name']);
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-    // Cek ekstensi file gambar
-    if (in_array($imageFileType, ["jpg", "png", "jpeg", "gif"])) {
-        // Cek apakah gambar berhasil di-upload
-        if (move_uploaded_file($gambar['tmp_name'], $target_file)) {
-            // Query untuk menambah data menu ke database
-            $sql = "INSERT INTO menu (nama_menu, deskripsi, harga, kategori, gambar) 
-                    VALUES (?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ssdss", $nama_menu, $deskripsi, $harga, $kategori, $gambar['name']);
-            if ($stmt->execute()) {
-                header("Location: daftarMenu.php?added=success");
-                exit();
-            } else {
-                echo "Error: " . $conn->error;
-            }
-        } else {
-            echo "Sorry, there was an error uploading your file.";
-        }
-    } else {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-    }
-}
-
 
 // Fungsi untuk memperbarui menu
 function updateMenu($conn, $id, $nama_menu, $deskripsi, $harga, $kategori, $gambar) {
@@ -113,36 +124,6 @@ function deleteMenu($conn, $id) {
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {
         header("Location: daftarMenu.php?deleted=success");
-        exit();
-    } else {
-        echo "Error: " . $conn->error;
-    }
-}
-
-// Fungsi untuk mendapatkan data user
-function getUserById($conn, $id) {
-    $query = "SELECT * FROM users WHERE id = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        return $result->fetch_assoc();
-    } else {
-        return null;
-    }
-}
-
-// Fungsi untuk menambah user
-function createUser($conn, $username, $email, $password, $role = 'user', $avatar = null) {
-    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-    $sql = "INSERT INTO users (username, email, password, role, avatar) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss", $username, $email, $hashed_password, $role, $avatar);
-
-    if ($stmt->execute()) {
-        header("Location: daftarUsers.php?added=success");
         exit();
     } else {
         echo "Error: " . $conn->error;

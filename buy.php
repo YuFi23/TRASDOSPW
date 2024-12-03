@@ -2,7 +2,7 @@
 include('database.php');
 session_start();
 
-// Query untuk mengambil data dari tabel menu
+// Query untuk mendapatkan semua data menu
 $result = $conn->query("SELECT * FROM menu");
 ?>
 
@@ -16,7 +16,7 @@ $result = $conn->query("SELECT * FROM menu");
 </head>
 <body>
     <nav class="navbar">
-        <div class="merk">Cafe YAHM</div>
+        <div class="merk">YAHM</div>
         <input type="checkbox" id="menu-toggle" class="menu-toggle">
         <label for="menu-toggle" class="menu-icon">&#9776;</label> 
         <ul class="nav-links">
@@ -41,18 +41,23 @@ $result = $conn->query("SELECT * FROM menu");
         <h1>Our Menu</h1>
         <div class="menu-grid">
             <?php while ($row = $result->fetch_assoc()): ?>
+                <?php
+                // Validasi harga untuk memastikan nilai valid
+                $price = is_numeric($row['harga']) && $row['harga'] > 0 ? $row['harga'] : 0;
+                ?>
                 <div class="menu-card">
-                    <!-- Menampilkan gambar menu -->
                     <img src="img/<?php echo $row['gambar']; ?>" alt="<?php echo $row['nama_menu']; ?>" />
                     <h3><?php echo $row['nama_menu']; ?></h3>
                     <p><?php echo $row['deskripsi']; ?></p>
-                    <p><strong>Price: Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?></strong></p>
-                    <p><strong>Category: <?php echo ucfirst($row['kategori']); ?></strong></p>
-                    <form action="order.php" method="POST">
+                    <p><strong>Price: Rp <?php echo number_format($price, 0, ',', '.'); ?></strong></p>
+                    <form action="pesen.php" method="POST" class="order-form">
                         <input type="hidden" name="menu_id" value="<?php echo $row['id']; ?>">
-                        <label for="jumlah">Quantity:</label>
-                        <input type="number" name="jumlah" id="jumlah" min="1" value="1" required>
-                        <button type="submit">
+                        <input type="hidden" name="menu_name" value="<?php echo $row['nama_menu']; ?>">
+                        <input type="hidden" name="menu_price" value="<?php echo $price; ?>">
+                        <label for="jumlah_<?php echo $row['id']; ?>">Quantity:</label>
+                        <input type="number" name="jumlah" id="jumlah_<?php echo $row['id']; ?>" class="quantity-input" data-price="<?php echo $price; ?>" min="1" value="1" required>
+                        <p><strong>Total: Rp <span id="total_price_<?php echo $row['id']; ?>"><?php echo number_format($price, 0, ',', '.'); ?></span></strong></p>
+                        <button type="submit" class="order-button">
                             <span>Order Now</span>
                         </button>
                     </form>
@@ -60,6 +65,20 @@ $result = $conn->query("SELECT * FROM menu");
             <?php endwhile; ?>
         </div>
     </div>
+
+    <script>
+        // Script untuk menghitung total harga secara dinamis
+        document.querySelectorAll('.quantity-input').forEach(input => {
+            input.addEventListener('input', function() {
+                const price = parseInt(this.dataset.price, 10);
+                const quantity = parseInt(this.value, 10) || 1; // Default ke 1 jika kosong
+                const totalPrice = price * quantity;
+
+                // Update total harga di elemen terkait
+                const totalPriceElement = document.querySelector(`#total_price_${this.id.split('_')[1]}`);
+                totalPriceElement.textContent = totalPrice.toLocaleString('id-ID');
+            });
+        });
+    </script>
 </body>
-<script src="home.js"></script>
 </html>

@@ -2,7 +2,7 @@
 $host = 'localhost'; 
 $username = 'root';
 $password = '';
-$dbname = 'cafe_yahm';
+$dbname = 'caffe_db';
 
 $conn = mysqli_connect($host, $username, $password, $dbname);
 if($conn->connect_errno){

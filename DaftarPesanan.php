@@ -38,6 +38,7 @@ if (isset($_GET['logout'])) {
                         <th>Nomor Meja</th>
                         <th>Jumlah Pesanan</th>
                         <th>Tanggal Pesan</th>
+                        <th>Reservation Name</th> <!-- New column for reservation name -->
                     </tr>
                 </thead>
                 <tbody>
@@ -48,8 +49,12 @@ if (isset($_GET['logout'])) {
                             pesanan.nama_menu, 
                             pesanan.nomor_meja, 
                             pesanan.jumlah, 
-                            pesanan.created_at AS tanggal_pesan
+                            pesanan.created_at AS tanggal_pesan,
+                            table_reservations.user_name AS reservation_name, 
+                            table_reservations.table_number
                         FROM pesanan
+                        LEFT JOIN table_reservations 
+                        ON pesanan.nomor_meja = table_reservations.table_number
                     ";
 
                     $result = $conn->query($query);
@@ -61,11 +66,18 @@ if (isset($_GET['logout'])) {
                                     <td>{$row['nama_menu']}</td>
                                     <td>{$row['nomor_meja']}</td>
                                     <td>{$row['jumlah']}</td>
-                                    <td>{$row['tanggal_pesan']}</td>
-                                  </tr>";
+                                    <td>{$row['tanggal_pesan']}</td>";
+
+                            // Debugging: Check if the reservation is found
+                            if ($row['reservation_name']) {
+                                echo "<td style='color: green;'>Reserved by: {$row['reservation_name']} (Table: {$row['table_number']})</td>";
+                            } else {
+                                echo "<td style='color: red;'>No reservation found for this order</td>";
+                            }
+                            echo "</tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='5'>Belum ada pesanan yang terdaftar.</td></tr>";
+                        echo "<tr><td colspan='6'>Belum ada pesanan yang terdaftar.</td></tr>";
                     }
                     ?>
                 </tbody>
