@@ -87,7 +87,6 @@ body {
     }
 }
 
-/* Welcome Section */
 .welcome {
     color: #705C53;
     text-align: center;
@@ -175,25 +174,23 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Avatar */
+
 .avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
+    width: 80px;           
+    height: 80px;          
+    border-radius: 50%;    
+    overflow: hidden;      
+    margin-bottom: 10px;
+    margin-left: 40px;   
 }
 
 .avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100%;           
+    height: 100%;          
+    object-fit: cover;    
 }
 
-/* Navbar Avatar */
+
 .user-avatarr {
     position: relative;
     cursor: pointer;

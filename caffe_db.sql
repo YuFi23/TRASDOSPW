@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Des 2024 pada 18.29
--- Versi server: 10.4.28-MariaDB
--- Versi PHP: 8.2.4
+-- Generation Time: Dec 03, 2024 at 07:21 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `menu`
+-- Table structure for table `menu`
 --
 
 CREATE TABLE `menu` (
@@ -39,18 +39,19 @@ CREATE TABLE `menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `menu`
+-- Dumping data for table `menu`
 --
 
 INSERT INTO `menu` (`id`, `nama_menu`, `deskripsi`, `harga`, `kategori`, `gambar`, `created_at`, `updated_at`) VALUES
-(1, 'Nasi Goreng', 'Nasi goreng spesial dengan topping telur', 25000.00, 'makanan', 'nasi_goreng.jpg', '2024-12-03 13:10:10', '2024-12-03 13:10:10'),
-(2, 'Es Teh Manis', 'Minuman es teh manis segar', 8000.00, 'minuman', 'es_teh_manis.jpg', '2024-12-03 13:10:10', '2024-12-03 13:10:10'),
-(3, 'Kentang Goreng', 'Cemilan kentang goreng crispy', 15000.00, 'snack', 'kentang_goreng.jpg', '2024-12-03 13:10:10', '2024-12-03 13:10:10');
+(1, 'Nasi Goreng', 'Nasi goreng spesial dengan topping telur', 25000.00, 'makanan', 'DSC_0140.JPG', '2024-12-03 13:10:10', '2024-12-03 18:05:25'),
+(2, 'Es Teh Manis', 'Minuman es teh manis segar', 8000.00, 'minuman', 'UKSW [KoleksiLogo.com].png', '2024-12-03 13:10:10', '2024-12-03 18:06:45'),
+(3, 'Kentang Goreng', 'Cemilan kentang goreng crispy', 15000.00, 'snack', 'Fakultas_Teknologi_Informasi_UKSW_-_Kritis_Kreatif_Inovatif.png', '2024-12-03 13:10:10', '2024-12-03 18:06:56'),
+(4, 'Kentang Gosong', 'Cemilan kentang goreng crispy', 10000.00, 'makanan', '91d9ee7c55cf5db5842eeeb31aa99537.jpg', '2024-12-03 18:03:39', '2024-12-03 18:03:39');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pesanan`
+-- Table structure for table `pesanan`
 --
 
 CREATE TABLE `pesanan` (
@@ -65,31 +66,20 @@ CREATE TABLE `pesanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `pesanan`
+-- Dumping data for table `pesanan`
 --
 
 INSERT INTO `pesanan` (`id`, `nama_pelanggan`, `nama_menu`, `nomor_meja`, `jumlah`, `created_at`, `updated_at`, `total_harga`) VALUES
-(1, 'Budi', 'Nasi Goreng', 1, 2, '2024-12-03 13:10:10', '2024-12-03 13:10:10', NULL),
-(2, 'Siti', 'Es Teh Manis', 2, 1, '2024-12-03 13:10:10', '2024-12-03 13:10:10', NULL),
-(3, 'Ahmad', 'Kentang Goreng', 3, 3, '2024-12-03 13:10:10', '2024-12-03 13:10:10', NULL),
 (4, 'adit', 'Nasi Goreng', 4, 1, '2024-12-03 16:35:07', '2024-12-03 16:35:07', NULL),
-(5, 'yerky', 'Nasi Goreng', 5, 2, '2024-12-03 16:41:54', '2024-12-03 16:41:54', NULL),
 (6, 'yerky', 'Nasi Goreng', 5, 2, '2024-12-03 16:41:54', '2024-12-03 16:41:54', NULL),
-(7, 'yerky', 'Nasi Goreng', 5, 2, '2024-12-03 16:41:54', '2024-12-03 16:41:54', NULL),
-(8, 'yerky', 'Nasi Goreng', 5, 2, '2024-12-03 16:41:54', '2024-12-03 16:41:54', NULL),
-(9, 'yerky', 'Nasi Goreng', 5, 2, '2024-12-03 16:41:54', '2024-12-03 16:41:54', NULL),
-(10, 'muti', 'Nasi Goreng', 7, 2, '2024-12-03 16:46:39', '2024-12-03 16:46:39', NULL),
 (11, 'muti', 'Nasi Goreng', 7, 2, '2024-12-03 16:46:39', '2024-12-03 16:46:39', NULL),
-(12, 'muti', 'Nasi Goreng', 7, 2, '2024-12-03 16:46:39', '2024-12-03 16:46:39', NULL),
-(13, 'muti', 'Nasi Goreng', 7, 1, '2024-12-03 16:46:39', '2024-12-03 16:46:39', NULL),
 (14, 'tea', 'Nasi Goreng', 9, 2, '2024-12-03 16:50:17', '2024-12-03 16:50:17', NULL),
-(15, 'tea', 'Es Teh Manis', 9, 1, '2024-12-03 16:50:17', '2024-12-03 16:50:17', NULL),
-(16, 'pan', 'Nasi Goreng', 10, 1, '2024-12-03 16:52:50', '2024-12-03 16:52:50', NULL);
+(17, 'yaya', 'Nasi Goreng', 1, 1, '2024-12-03 17:48:19', '2024-12-03 17:48:19', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `table_reservations`
+-- Table structure for table `table_reservations`
 --
 
 CREATE TABLE `table_reservations` (
@@ -100,7 +90,7 @@ CREATE TABLE `table_reservations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `table_reservations`
+-- Dumping data for table `table_reservations`
 --
 
 INSERT INTO `table_reservations` (`id`, `user_name`, `table_number`, `reservation_time`) VALUES
@@ -113,12 +103,13 @@ INSERT INTO `table_reservations` (`id`, `user_name`, `table_number`, `reservatio
 (7, 'muti', 7, '2024-12-03 16:48:56'),
 (8, 'tea', 9, '2024-12-03 16:50:17'),
 (9, 'tea', 9, '2024-12-03 16:52:34'),
-(10, 'pan', 10, '2024-12-03 16:52:50');
+(10, 'pan', 10, '2024-12-03 16:52:50'),
+(11, 'yaya', 1, '2024-12-03 17:48:19');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -133,7 +124,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `avatar`, `created_at`, `updated_at`) VALUES
@@ -147,27 +138,27 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `avatar`, `c
 --
 
 --
--- Indeks untuk tabel `menu`
+-- Indexes for table `menu`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `nama_menu` (`nama_menu`);
 
 --
--- Indeks untuk tabel `pesanan`
+-- Indexes for table `pesanan`
 --
 ALTER TABLE `pesanan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `nama_menu` (`nama_menu`);
 
 --
--- Indeks untuk tabel `table_reservations`
+-- Indexes for table `table_reservations`
 --
 ALTER TABLE `table_reservations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -175,39 +166,39 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `menu`
+-- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `pesanan`
+-- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT untuk tabel `table_reservations`
+-- AUTO_INCREMENT for table `table_reservations`
 --
 ALTER TABLE `table_reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `pesanan`
+-- Constraints for table `pesanan`
 --
 ALTER TABLE `pesanan`
   ADD CONSTRAINT `pesanan_ibfk_1` FOREIGN KEY (`nama_menu`) REFERENCES `menu` (`nama_menu`) ON DELETE CASCADE;

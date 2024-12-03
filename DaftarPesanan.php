@@ -68,7 +68,7 @@ if (isset($_GET['logout'])) {
                                     <td>{$row['jumlah']}</td>
                                     <td>{$row['tanggal_pesan']}</td>";
 
-                            // Debugging: Check if the reservation is found
+                            
                             if ($row['reservation_name']) {
                                 echo "<td style='color: green;'>Reserved by: {$row['reservation_name']} (Table: {$row['table_number']})</td>";
                             } else {
